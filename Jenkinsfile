@@ -7,5 +7,10 @@ pipeline {
 '''
       }
     }
+    stage('Build docker') {
+      steps {
+        sh 'docker build -t popcorn:$BUILD_NUMBER .'
+      }
+    }
   }
 }
