@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  
+   environment {
+    DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+  }
+  
   stages {
     stage('greeting') {
       steps {
@@ -14,7 +19,7 @@ pipeline {
     }
     stage('docker push') {
       steps {
-        sh '''docker login -u bray -p
+        sh '''docker login -u bray -p $DOCKER_PASSWORD
 docker push bray/popcorn:$BUILD_NUMBER'''
       }
     }
