@@ -12,5 +12,11 @@ pipeline {
         sh 'docker build -t bray/popcorn:$BUILD_NUMBER .'
       }
     }
+    stage('docker push') {
+      steps {
+        sh '''docker login -u bray -p
+docker push bray/popcorn:$BUILD_NUMBER'''
+      }
+    }
   }
 }
