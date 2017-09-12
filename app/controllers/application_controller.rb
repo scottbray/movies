@@ -6,4 +6,5 @@ class ApplicationController < ActionController::Base
     @hostname = ENV['HOSTNAME'] || 'Anonymous'
   end
   
+  
 end
