@@ -22,7 +22,7 @@ COPY . /usr/src/app
 WORKDIR /usr/src/app
 
 RUN bundle install
-RUN rails db:create && db:migrate
+RUN rails db:create && rails db:migrate
 
 EXPOSE 3333
 CMD ["rails", "server"]
