@@ -9,13 +9,13 @@ pipeline {
     }
     stage('build docker') {
       steps {
-        sh '''docker build -t bray/popcorn:$BUILD_NUMBER .
+        sh '''docker build -t scottbray/popcorn:$BUILD_NUMBER .
 '''
       }
     }
     stage('testing') {
       steps {
-        sh '''docker run popcorn:1 rails test
+        sh '''docker run scottbray/popcorn:$BUILD_NUMBER rails test
 '''
       }
     }
