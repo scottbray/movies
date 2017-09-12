@@ -1,10 +1,5 @@
 pipeline {
   agent any
-  
-  environment {
-    DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
-  }
-  
   stages {
     stage('greeting') {
       steps {
@@ -31,14 +26,14 @@ docker push scottbray/popcorn:$BUILD_NUMBER
 '''
       }
     }
-    
-   stage('deploy to k8s') {
+    stage('deploy to k8s') {
       steps {
         sh '''envsubst < deployment.yaml | kubectl apply -f -
 '''
       }
-    } 
-    
-    
+    }
+  }
+  environment {
+    DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
   }
 }
