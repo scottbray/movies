@@ -8,12 +8,7 @@ pipeline {
       steps {
         sh '''echo "hello world!"
 '''
-   }
-      }
-      stage('testing') {
-        steps {
-         sh '''rails test
-'''
+   
       }
     }
     stage('Build docker') {
@@ -21,6 +16,12 @@ pipeline {
         sh 'docker build -t bray/popcorn:$BUILD_NUMBER .'
       }
     }
+    }
+      }
+      stage('testing') {
+        steps {
+         sh '''docker run popcorn:$BUILD_NUMBER rails test
+'''
     stage('docker push') {
       steps {
         sh '''docker login -u bray -p $DOCKER_PASSWORD
