@@ -20,7 +20,7 @@ pipeline {
     }
     stage('testing') {
       steps {
-        sh '''docker run popcorn:$BUILD_NUMBER rails test
+        sh '''docker run popcorn:1 rails test
 '''
       }
     }
