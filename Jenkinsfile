@@ -21,7 +21,7 @@ pipeline {
     }
     stage('docker push') {
       steps {
-        sh '''docker login -u scottysfo@gmail.com -p $DOCKER_PASSWORD
+        sh '''docker login -u scottbray -p $DOCKER_PASSWORD
 docker push bray/popcorn:$BUILD_NUMBER
 '''
       }
